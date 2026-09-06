@@ -108,11 +108,11 @@ public override void InsertItem(ItemIcon itemIcon)
 ```
 
 **관련 코드**
-- `Scripts/UI/Inventory/InventoryController.cs`
-- `Scripts/UI/Inventory/ItemIconPanel/ItemPanel.cs`
-- `Scripts/UI/Inventory/ItemIconPanel/InventoryPanel.cs`
-- `Scripts/UI/Inventory/ItemIconPanel/Weaponpanel.cs`
-- `Scripts/UI/Inventory/Item/ItemIconInteract.cs`
+- `Assets/Scripts/UI/Inventory/InventoryController.cs`
+- `Assets/Scripts/UI/Inventory/ItemIconPanel/ItemPanel.cs`
+- `Assets/Scripts/UI/Inventory/ItemIconPanel/InventoryPanel.cs`
+- `Assets/Scripts/UI/Inventory/ItemIconPanel/Weaponpanel.cs`
+- `Assets/Scripts/UI/Inventory/Item/ItemIconInteract.cs`
 
 <br/>
 
@@ -178,11 +178,11 @@ public override void OnRoomListUpdate(List<RoomInfo> roomList)
 ```
 
 **관련 코드**
-- `Scripts/Network/NetworkController.cs`
-- `Scripts/Network/NetworkCallback.cs`
-- `Scripts/Network/CreateRoomSettingPanel.cs`
-- `Scripts/Network/PlayerRoom.cs`
-- `Scripts/Network/RoomPanel.cs`
+- `Assets/Scripts/Network/NetworkController.cs`
+- `Assets/Scripts/Network/NetworkCallback.cs`
+- `Assets/Scripts/Network/CreateRoomSettingPanel.cs`
+- `Assets/Scripts/Network/PlayerRoom.cs`
+- `Assets/Scripts/Network/RoomPanel.cs`
 
 <br/>
 
@@ -255,11 +255,11 @@ public override void SetSpawn()
 ```
 
 **관련 코드**
-- `Scripts/Player/Control/PlayerController_M.cs`
-- `Scripts/UI/Inventory/Item/DropItem_M.cs`
-- `Scripts/UI/Inventory/Money/MoneyDropItem_M.cs`
-- `Scripts/Map/Dungeon/MonsterRandomSpawner_M.cs`
-- `Scripts/Enemy/EnemyHealth.cs`
+- `Assets/Scripts/Player/Control/PlayerController_M.cs`
+- `Assets/Scripts/UI/Inventory/Item/DropItem_M.cs`
+- `Assets/Scripts/UI/Inventory/Money/MoneyDropItem_M.cs`
+- `Assets/Scripts/Map/Dungeon/MonsterRandomSpawner_M.cs`
+- `Assets/Scripts/Enemy/EnemyHealth.cs`
 
 <br/>
 
@@ -326,10 +326,10 @@ public void RequestPlayerSpawn()
 ```
 
 **관련 코드**
-- `Scripts/Map/Dungeon/DungeonGenerator_M.cs`
-- `Scripts/Map/Dungeon/NetworkEventReceiver.cs`
-- `Scripts/Map/Dungeon/DungeonPart.cs`
-- `Scripts/Map/Dungeon/EntryPoint.cs`
+- `Assets/Scripts/Map/Dungeon/DungeonGenerator_M.cs`
+- `Assets/Scripts/Map/Dungeon/NetworkEventReceiver.cs`
+- `Assets/Scripts/Map/Dungeon/DungeonPart.cs`
+- `Assets/Scripts/Map/Dungeon/EntryPoint.cs`
 
 <br/>
 
@@ -350,11 +350,11 @@ public void RequestPlayerSpawn()
 
 ## Troubleshooting
 
-### 공격 애니메이션 동기화 누락 문제
+### Photon 공격 애니메이션 동기화 누락 문제
 
 **문제**
 
-초기에는 Photon의 Animator 동기화를 이용해 공격 상태를 다른 Client에 전달했습니다.
+초기에는 Photon의 Animator 동기화 기능을 이용해 공격 상태를 다른 Client에 전달했습니다.
 하지만 짧게 실행되는 공격 상태가 동기화 시점 사이에서 누락되면서,
 다른 Client에서 공격 애니메이션이 정상적으로 재생되지 않는 문제가 발생했습니다.
 
@@ -389,14 +389,17 @@ private void RpcAnimator()
 
 **결과**
 
-공격 상태 전체를 지속적으로 동기화하는 대신 공격 시작 이벤트를 직접 전달함으로써,
-다른 Client에서도 공격 애니메이션이 안정적으로 실행되도록 개선했습니다.
+Animator의 상태 변화를 주기적으로 동기화하는 대신 공격 시작 이벤트를 직접 전달함으로써,
+짧은 공격 상태가 동기화 과정에서 누락되는 문제를 해결하고
+다른 Client에서도 공격 애니메이션이 안정적으로 재생되도록 개선했습니다.
+
 <br/>
 
 ## 개발 회고
 
-DogSoul은 처음으로 진행한 팀 게임 프로젝트였고, 당시에는 기능 구현과 빠른 연동에 집중하면서 `InventoryController`가 아이템 보유 상태, UI 갱신, 장착, 드롭, 소지 공간 계산 등 여러 책임을 함께 가지도록 설계했습니다.
+DogSoul은 처음으로 진행한 팀 게임 프로젝트였고, 당시에는 기능 구현과 시스템 간 빠른 연동에 집중한 결과, 'InventoryController'가 아이템 보유 상태, UI 갱신, 장착, 드롭, 소지 공간 계산 등 여러 책임을 함께 가지도록 설계했습니다.
 
 프로젝트가 커지면서 하나의 클래스가 많은 역할을 담당할수록 기능 수정 시 영향을 확인해야 하는 범위가 넓어진다는 점을 경험했습니다. 이후 프로젝트에서는 데이터 관리, UI, 기능 실행의 책임을 분리하고 각 클래스가 명확한 역할을 가지도록 설계하는 것을 더 중요하게 고려하게 되었습니다.
 
-이 경험을 통해 기능이 동작하는 것뿐 아니라, 이후의 변경과 확장을 고려한 구조 설계가 중요하다는 점을 배웠습니다.
+이 경험을 통해 기능을 동작하게 만드는 것뿐 아니라,
+이후의 변경과 확장을 고려해 각 클래스의 책임을 설계하는 것이 중요하다는 점을 배웠습니다.
