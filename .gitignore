@@ -81,3 +81,73 @@ Assets/Firebase/Plugins.meta
 
 # Unity Asset
 Assets/ModularDungeonCollection/
+
+# Portfolio - excluded third-party assets
+/Assets/3DShapes/
+/Assets/3DShapes.meta
+
+/Assets/Animations/
+/Assets/Animations.meta
+
+/Assets/cannon/
+/Assets/cannon.meta
+
+/Assets/DogKnight/
+/Assets/DogKnight.meta
+
+/Assets/DogKnight_test/
+/Assets/DogKnight_test.meta
+
+/Assets/Fantasy Wooden GUI  Free/
+/Assets/Fantasy Wooden GUI  Free.meta
+
+/Assets/GUI_Parts/
+/Assets/GUI_Parts.meta
+
+/Assets/Kawaii Slimes/
+/Assets/Kawaii Slimes.meta
+
+/Assets/Kevin Iglesias/
+/Assets/Kevin Iglesias.meta
+
+/Assets/KoreanTyper/
+/Assets/KoreanTyper.meta
+
+/Assets/Low-Poly Medieval Market/
+/Assets/Low-Poly Medieval Market.meta
+
+/Assets/LowPolyDungeons/
+/Assets/LowPolyDungeons.meta
+
+/Assets/Matthew Guz/
+/Assets/Matthew Guz.meta
+
+/Assets/Medieval_house_lite/
+/Assets/Medieval_house_lite.meta
+
+/Assets/Modern GDR - Free icons pack/
+/Assets/Modern GDR - Free icons pack.meta
+
+/Assets/Monster/
+/Assets/Monster.meta
+
+/Assets/Resources/
+/Assets/Resources.meta
+
+/Assets/RPG Monster Wave PBR/
+/Assets/RPG Monster Wave PBR.meta
+
+/Assets/Solodream/
+/Assets/Solodream.meta
+
+/Assets/Statistics/
+/Assets/Statistics.meta
+
+/Assets/Temp_Prefab/
+/Assets/Temp_Prefab.meta
+
+/Assets/Tree_Textures/
+/Assets/Tree_Textures.meta
+
+/Assets/Vefects/
+/Assets/Vefects.meta
