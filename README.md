@@ -1,3 +1,5 @@
+
+
 <h1 align="center">DogSoul</h1>
 <p align="center">Unity 기반 멀티플레이 로그라이트 액션 RPG</p>
 
@@ -8,6 +10,9 @@
 </p>
 
 > 본 Repository는 포트폴리오 제출을 위해 실제 팀 프로젝트 Repository를 Fork한 저장소입니다.
+>
+> 포트폴리오 제출을 위해 직접 작성한 Source Code를 중심으로 구성했으며,
+> 외부 Asset 및 리소스는 Repository에서 제외했습니다.
 
 <br/>
 
