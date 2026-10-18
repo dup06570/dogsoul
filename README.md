@@ -273,6 +273,10 @@ public override void SetSpawn()
 Room, Hallway, Stair, Trap Room 등 여러 종류의 맵 모듈을 연결하여
 던전을 절차적으로 생성하는 시스템을 구현했습니다.
 
+#### 던전 생성 과정
+
+![던전 생성 과정](./docs/images/dungeon.gif)
+
 멀티플레이에서는 각 Client가 따로 맵을 생성하지 않고
 **Master Client가 던전을 생성**하도록 구성했으며,
 생성된 맵 구성 요소를 Photon Room Object로 생성하여
