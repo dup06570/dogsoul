@@ -342,6 +342,88 @@ public void RequestPlayerSpawn()
 
 <br/>
 
+### 5. Inspector에서 편집 가능한 Key–Value 자료구조
+절차적 던전 생성에 사용하는 몬스터 종류·방 타입·아이템 종류와 각각의 생성 확률을 팀원들이 코드 수정 없이 Inspector에서 관리할 수 있도록 편집 기능을 개발했습니다.
+프로젝트에서 사용한 Unity 2022.3은 Dictionary의 기본 직렬화를 지원하지 않아, 
+[SerializeField]만으로는 해당 데이터를 기본 Inspector에서 편집하고 씬·프리팹에 저장할 수 없었습니다. 
+이를 해결하기 위해 직렬화 가능한 제네릭 클래스 SerializableArray<TKey, TValue>와 커스텀 PropertyDrawer를 구현했습니다.
+
+
+#### 핵심 코드
+```csharp
+[SerializeField] private List<TKey> keys = new List<TKey>();
+[SerializeField] private List<TValue> values = new List<TValue>();
+
+[NonSerialized]
+private List<KeyValuePair<TKey, TValue>> keyValuePairs
+    = new List<KeyValuePair<TKey, TValue>>();
+
+public void OnBeforeSerialize()
+{
+    keys.Clear();
+    values.Clear();
+
+    foreach (var pair in keyValuePairs)
+    {
+        keys.Add(pair.Key);
+        values.Add(pair.Value);
+    }
+}
+
+public void OnAfterDeserialize()
+{
+    keyValuePairs.Clear();
+
+    for (int i = 0; i < keys.Count; i++)
+    {
+        if (keys[i] != null)
+        {
+            keyValuePairs.Add(
+                new KeyValuePair<TKey, TValue>(keys[i], values[i])
+            );
+        }
+        else
+        {
+            Debug.LogWarning(
+                $"Null key found at index {i}. It will be skipped."
+            );
+        }
+    }
+}
+```
+
+#### 결과
+
+| 적용 대상 | Key | Value |
+| --- | --- | --- |
+| 몬스터 생성 | 몬스터 프리팹 (`GameObject`) | 생성 확률 (`float`) |
+| 던전 연결 | 연결할 방 타입 (`NeedRoomType`) | 생성 확률 (`float`) |
+| 아이템 생성 | 아이템 데이터 (`ItemData`) | 생성 확률 (`float`) |
+
+```csharp
+public enum NeedRoomType
+{
+    None,
+    Room,
+    Stair,
+    Hallway,
+    BossRoom,
+    TrapRoom,
+    SmallRoom,
+
+}
+[SerializeField] public SerializableArray<NeedRoomType, float> needRoomArray;
+```
+
+
+**관련 코드**
+- `Assets/Scripts/Serializable/SerializableArray.cs`
+- `Assets/Scripts/Serializable/Editor/SerializableArrayDrawer.cs`
+- `Assets/Scripts/Map/Dungeon/EntryPoint.cs`
+- `Assets/Scripts/Map/Dungeon/MonsterRandomSpawner.cs`
+- `Assets/Scripts/Map/Dungeon/ItemRandomSpawner.cs`
+<br/>
+
 ## 시스템 구조도
 
 > 아래 구조도는 DogSoul 팀 프로젝트 전체의 시스템 구성을 나타냅니다.
