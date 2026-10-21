@@ -414,7 +414,9 @@ public enum NeedRoomType
 }
 [SerializeField] public SerializableArray<NeedRoomType, float> needRoomArray;
 ```
-![방 타입과 생성 확률 편집](./docs/images/SerializableArray.gif)
+<img src="./docs/images/SerializableArray"
+     alt="방 타입과 생성 확률 편집"
+     width="900">
 
 **관련 코드**
 - `Assets/Scripts/Serializable/SerializableArray.cs`
