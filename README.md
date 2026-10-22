@@ -116,6 +116,12 @@ public override void InsertItem(ItemIcon itemIcon)
 }
 ```
 
+#### 결과
+<img src="./docs/images/Dogsoul_Inventory_1.gif"
+     alt="인벤토리 상호작용"
+     width="900">
+
+
 **관련 코드**
 - `Assets/Scripts/UI/Inventory/InventoryController.cs`
 - `Assets/Scripts/UI/Inventory/ItemIconPanel/ItemPanel.cs`
